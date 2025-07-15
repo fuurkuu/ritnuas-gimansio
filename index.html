@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymRutinas - Tu Entrenador furku</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">GymRutinas</h1>
+                <div class="header-actions">
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <button class="user-btn" id="userBtn">
+                            <span class="user-avatar"></span>
+                            <span class="user-name" id="userName"></span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <button class="dropdown-item" id="viewProfileBtn">Mi Perfil</button>
+                            <button class="dropdown-item" id="myRoutinesBtn">Mis Rutinas</button>
+                            <button class="dropdown-item" id="logoutBtn">Cerrar Sesión</button>
+                        </div>
+                    </div>
+                    <button class="login-btn" id="loginBtn">Iniciar Sesión</button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="hero-title">Tu Entrenador Personal furku</h2>
+                <p class="hero-subtitle">Genera rutinas personalizadas según tu objetivo y disponibilidad</p>
+                <div class="hero-features">
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <span>Objetivos Personalizados</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">📅</span>
+                        <span>Horarios Flexibles</span>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section class="login-section" id="loginSection">
+            <div class="login-card">
+                <div class="login-tabs">
+                    <button class="tab-btn active" data-tab="login">Iniciar Sesión</button>
+                    <button class="tab-btn" data-tab="register">Registrarse</button>
+                </div>
+                
+                <div class="tab-content active" id="loginTab">
+                    <h3>Bienvenido de nuevo</h3>
+                    <form id="loginForm">
+                        <div class="form-field">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="loginPassword">Contraseña</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="auth-btn">Iniciar Sesión</button>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="registerTab">
+                    <h3>Crear cuenta</h3>
+                    <form id="registerForm">
+                        <div class="form-field">
+                            <label for="registerName">Nombre</label>
+                            <input type="text" id="registerName" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="registerPassword">Contraseña</label>
+                            <input type="password" id="registerPassword" required>
+                        </div>
+                        <button type="submit" class="auth-btn">Registrarse</button>
+                    </form>
+                </div>
+                
+                <button class="close-btn" id="closeLoginBtn">✕</button>
+            </div>
+        </section>
+
+        <!-- User Dashboard Section -->
+        <section class="dashboard-section" id="dashboardSection">
+            <div class="dashboard-header">
+                <h2>Mi Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalRoutines">0</span>
+                        <span class="stat-label">Rutinas Creadas</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="currentStreak">0</span>
+                        <span class="stat-label">Días Consecutivos</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="favoriteObjective">-</span>
+                        <span class="stat-label">Objetivo Favorito</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-content">
+                <div class="recent-routines">
+                    <h3>Mis Rutinas Recientes</h3>
+                    <div class="routines-grid" id="recentRoutinesGrid">
+                        <!-- Las rutinas se cargarán aquí -->
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <h3>Acciones Rápidas</h3>
+                    <div class="actions-grid">
+                        <button class="action-card" id="newRoutineBtn">
+                            <span class="action-icon">NR</span>
+                            <span class="action-text">Nueva Rutina</span>
+                        </button>
+                        <button class="action-card" id="viewAllRoutinesBtn">
+                            <span class="action-icon">VR</span>
+                            <span class="action-text">Ver Todas</span>
+                        </button>
+                        <button class="action-card" id="markDayCompleteBtn">
+                            <span class="action-icon">✓</span>
+                            <span class="action-text">Marcar Día Cumplido</span>
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-footer">
+                        <button class="create-routine-btn" id="createRoutineBtn">
+                            <span class="btn-icon">🏋️</span>
+                            Crear Nueva Rutina
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Routines Section -->
+        <section class="my-routines-section" id="myRoutinesSection">
+            <div class="routines-header">
+                <h2>Mis Rutinas Guardadas</h2>
+                <button class="back-btn" id="backToDashboardBtn">← Volver al Dashboard</button>
+            </div>
+            
+            <div class="routines-filters">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="weight-loss">Pérdida de Peso</button>
+                <button class="filter-btn" data-filter="muscle-gain">Ganancia Muscular</button>
+                <button class="filter-btn" data-filter="maintenance">Mantenimiento</button>
+            </div>
+            
+            <div class="saved-routines-grid" id="savedRoutinesGrid">
+                <!-- Las rutinas guardadas se cargarán aquí -->
+            </div>
+        </section>
+
+        <!-- Login Alert -->
+        <div class="login-alert" id="loginAlert">
+            <div class="alert-content">
+                <div class="alert-icon">ℹ️</div>
+                <div class="alert-text">
+                    <strong>¡Inicia sesión para guardar tus rutinas!</strong>
+                    <span>Crea una cuenta gratuita y guarda todas tus rutinas personalizadas</span>
+                </div>
+                <div class="alert-actions">
+                    <button class="alert-btn" onclick="showLoginModal()">Iniciar Sesión</button>
+                    <button class="alert-close" onclick="hideLoginAlert()">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Section -->
+        <section class="config-section" id="configSection">
+            <div class="config-card">
+                <h3>Configura tu Rutina</h3>
+                
+                <!-- Objetivo Selection -->
+                <div class="form-group">
+                    <label>¿Cuál es tu objetivo?</label>
+                    <div class="objective-options">
+                        <button class="objective-btn" data-objective="weight-loss">
+                            <span class="objective-icon">🔥</span>
+                            <span class="objective-text">Bajar de peso</span>
+                        </button>
+                        <button class="objective-btn" data-objective="muscle-gain">
+                            <span class="objective-icon">💪</span>
+                            <span class="objective-text">Ganar músculo</span>
+                        </button>
+                        <button class="objective-btn" data-objective="maintenance">
+                            <span class="objective-icon">⚖️</span>
+                            <span class="objective-text">Mantenerse en forma</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Days Selection -->
+                <div class="form-group">
+                    <label>¿Qué días entrenas?</label>
+                    <div class="days-selection">
+                        <button class="day-btn" data-day="monday">L</button>
+                        <button class="day-btn" data-day="tuesday">M</button>
+                        <button class="day-btn" data-day="wednesday">X</button>
+                        <button class="day-btn" data-day="thursday">J</button>
+                        <button class="day-btn" data-day="friday">V</button>
+                        <button class="day-btn" data-day="saturday">S</button>
+                        <button class="day-btn" data-day="sunday">D</button>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button class="generate-btn" id="generateRoutine">
+                    <span>Generar Rutina</span>
+                    <span class="btn-icon">✨</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Routine Display Section -->
+        <section class="routine-section" id="routineSection">
+            <div class="routine-header">
+                <h3>Tu Rutina Personalizada</h3>
+                <div class="routine-actions">
+                    <button class="action-btn" id="saveRoutineBtn" style="display: none;">
+                        <span>💾</span>
+                        <span>Guardar Rutina</span>
+                    </button>
+                    <button class="action-btn" id="regenerateBtn">
+                        <span>🔄</span>
+                        <span>Regenerar</span>
+                    </button>
+                    <button class="action-btn" id="downloadBtn">
+                        <span>📄</span>
+                        <span>Descargar PDF</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="routine-content" id="routineContent">
+                <!-- Routine will be generated here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 GymRutinas - Tu entrenador personal furku</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
